@@ -1,0 +1,11 @@
+body {
+	padding-top: 50px;
+}
+
+.musicplayer {
+    padding-top: 5px;
+}
+
+.mainContent{
+    overflow: auto;
+}
