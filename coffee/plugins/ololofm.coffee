@@ -7,8 +7,8 @@ class OlolofmPlugin
         console.log "ololofm plugin inited"
         return true
 
-    query: (@query, callback) ->
-        url = "http://ololo.fm/search/?x=0&y=0&query="+encodeURIComponent(@query)
+    query: (query, callback) ->
+        url = "http://ololo.fm/search/?x=0&y=0&query="+encodeURIComponent(query)
         $.get url, (data) =>
             re = /<a href="\/song\/(.+?)".+?<span>(.+?)<\/span><br.*?\/>(.+?)<\/a><dfn>(.+?)<\/dfn>/gim
             data = data.replace(/[\n\t\r]/gm, "")
@@ -32,4 +32,4 @@ class OlolofmPlugin
             callback(url)
             return true
 
-window.plugins.push(new OlolofmPlugin())
+window.plugins.push new OlolofmPlugin()

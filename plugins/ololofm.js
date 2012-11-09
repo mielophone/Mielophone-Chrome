@@ -17,8 +17,7 @@
     OlolofmPlugin.prototype.query = function(query, callback) {
       var url,
         _this = this;
-      this.query = query;
-      url = "http://ololo.fm/search/?x=0&y=0&query=" + encodeURIComponent(this.query);
+      url = "http://ololo.fm/search/?x=0&y=0&query=" + encodeURIComponent(query);
       return $.get(url, function(data) {
         var i, re, res;
         re = /<a href="\/song\/(.+?)".+?<span>(.+?)<\/span><br.*?\/>(.+?)<\/a><dfn>(.+?)<\/dfn>/gim;

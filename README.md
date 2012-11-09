@@ -13,3 +13,7 @@
 1. Execute "make all" (use make -B if necessary)
 2. Open Chrome and go to chrome://extensions
 3. Use "Load unpacked extension.." and select this repository
+
+## More 
+
+For more examples of Chrome Apps see this github [repo](https://github.com/GoogleChrome/chrome-app-samples).

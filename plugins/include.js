@@ -1,4 +1,4 @@
-// define plugins array
-window.plugins = [];
-
-define(["plugins/ololofm.js"]);
+define([
+    "plugins/ololofm.js",
+    "plugins/muzebra.js"
+]);

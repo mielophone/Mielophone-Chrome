@@ -1,8 +1,15 @@
-require(["../data/include", "../plugins/include", "templates"], function(){
+require([
+    "../mielophone/Mielophone.js",
+    "../data/include",
+    "../plugins/include",
+    "templates"
+], function(){
 	(function() {
-        // precompile templates
-        var songTemplate =  Handlebars.templates.song,
-            container = $("#container"),
+        // init templates
+        var songTemplate =  Handlebars.templates.song;
+
+        // precache elemets
+        var container = $("#container"),
             songsContainer = $("#songs");
 
 		// bind actions
@@ -11,7 +18,7 @@ require(["../data/include", "../plugins/include", "templates"], function(){
                 songsContainer.empty();
                 // search
 				var query = $("#search").val();
-				window.plugins[0].query(query, function(data){
+                Mielophone.findAllResults(query, function(data){
 					var html = "";
 
 					var item, num;
@@ -33,21 +40,7 @@ require(["../data/include", "../plugins/include", "templates"], function(){
 			evt.preventDefault();
 			var id = $(this).data('id');
 
-            var i, j, plugin, item, found = false;
-            for(i in window.plugins){
-                plugin = window.plugins[i];
-                for(j in plugin.songs){
-                    item = plugin.songs[j];
-                    if(item.id == id){
-                        found = true;
-                        break;
-                    }
-                }
-
-                if(found) break;
-            }
-
-            plugin.getStreamUrl(item.url, function(streamUrl){
+            Mielophone.getStreamUrl(id, function(streamUrl){
                 var source = $('<source/>');
                 source.attr('type', 'audio/mpeg');
                 source.attr('src', streamUrl);
