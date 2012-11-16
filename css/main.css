@@ -9,3 +9,27 @@ body {
 .mainContent{
     overflow: auto;
 }
+
+.artist {
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    width: 120px;
+    height: 120px;
+    padding: 5px;
+    text-align: center;
+    position: relative;
+}
+
+.artist p {
+    float: left;
+    display: block;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+}
+
+.artist img {
+    width: 90px;
+    height: 90px;
+}

@@ -1,9 +1,17 @@
 class Mielophone
 	constructor: () ->
+        require ['../mielophone/services/Discogs'], () =>
+            @discogs = new Discogs
+
         # init plugins array
         window.plugins = []
 
+    queryDatabase: (query, callback) ->
+        @discogs.search(query, callback)
+
+    ###
     # fetch stream url from plugin by song id
+    ###
     getStreamUrl: (id, callback) ->
         # find song & plugin
         found = false
@@ -18,8 +26,9 @@ class Mielophone
         plugin.getStreamUrl item.url, (streamUrl) ->
             callback(streamUrl)
             return true
-
+    ###
     # find query string in all active plugins
+    ###
     findAllResults: (query, callback) ->
         # reset results array
         results = []

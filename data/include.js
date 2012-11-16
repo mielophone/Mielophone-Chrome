@@ -1,1 +1,5 @@
-define(["data/track.js"]);
+define([
+    "../data/track",
+    "../data/artist",
+    "../data/album"
+]);
