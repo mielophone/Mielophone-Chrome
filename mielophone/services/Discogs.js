@@ -27,7 +27,6 @@
               results.push(new Album(res.id, res.title, res.thumb, res.year, res.country, res.style, res.genre));
           }
         }
-        console.log(results);
         return callback(results);
       });
     };

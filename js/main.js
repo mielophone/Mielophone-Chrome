@@ -22,11 +22,14 @@ require([
         // init templates
         var songTemplate = Handlebars.templates.song;
         var artistTemplate = Handlebars.templates.artist;
+        var albumTemplate = Handlebars.templates.album;
 
         // precache elemets
         var container = $("#container"),
             resultsContainer = $("#results"),
-            songsContainer = $("#songs");
+            artistResultsContainer = $("#artistResults"),
+            albumResultsContainer = $("#albumResults"),
+            songsResultsContainer = $("#songResults");
 
 		// bind actions
 		$("#search").keydown(function(e){
@@ -35,22 +38,30 @@ require([
                 var query = $(this).val();
 
                 // clean old stuff
-                resultsContainer.empty();
+                artistResultsContainer.empty();
+                albumResultsContainer.empty();
+                songsResultsContainer.empty();
 
                 // get new results
                 Mielophone.queryDatabase(query, function(data){
-                    var html = "";
+                    var htmlArtists = "",
+                        htmlAlbums = "";
 
                     var item, num;
                     for(var i in data){
                         item = data[i];
                         if(item instanceof Artist){
-                            html += artistTemplate(item);
+                            htmlArtists += artistTemplate(item);
+                        }else if(item instanceof Album){
+                            htmlAlbums += albumTemplate(item);
                         }
                     }
 
                     container.height(window.innerHeight - 55);
-                    resultsContainer.html(html);
+                    resultsContainer.show();
+
+                    artistResultsContainer.html(htmlArtists);
+                    albumResultsContainer.html(htmlAlbums);
 
                     $(".artist").each(function(index, item){
                         var url = $(this).data('image');
@@ -59,24 +70,21 @@ require([
                     });
                 });
 
-
-                return; // old song search stuff
-                songsContainer.empty();
-                // search
-				var query = $("#search").val();
+                // search for songs
                 Mielophone.findAllResults(query, function(data){
 					var html = "";
 
-					var item, num;
-					for(var i in data){
+					var i, item;
+					for(i = 0; i < data.length; i++){
                         item = data[i];
-                        num = parseInt(i)+1;
-                        item.num = num;
+                        item.num = i+1;
                         html += songTemplate(item);
 					}
 
                     container.height(window.innerHeight - 55);
-					songsContainer.html(html).show();
+                    resultsContainer.show();
+
+					songsResultsContainer.html(html);
 				});
 			}
 		});

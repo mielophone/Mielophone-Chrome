@@ -14,7 +14,7 @@ class Discogs
                         results.push(new Artist(res.id, res.title, res.thumb))
                     when 'master', 'release'
                         results.push(new Album(res.id, res.title, res.thumb, res.year, res.country, res.style, res.genre))
-            console.log results
+
             callback(results)
 
 

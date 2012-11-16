@@ -17,13 +17,24 @@ class MuzebraPlugin
             @songs = []
             i = 0
             while res != null
-                name = res[3].split(" - ")
-                @songs[i] = new Track(name[1], name[0], res[2], res[1], @id)
+                if res[1].indexOf("http") != -1
+                    name = res[3].split(" - ")
+                    dur = @secondsToString(res[2])
+                    @songs[i] = new Track(name[1], name[0], dur, res[1], @id)
                 res = re.exec(data)
                 i++
 
             callback(@songs)
             return true
+
+    secondsToString: (totalseconds) ->
+        totalseconds = parseInt(totalseconds)
+        mins = Math.floor(totalseconds / 60)
+        secs = totalseconds - mins * 60
+        time = if mins < 10 then "0" + mins else "" + mins
+        time += ":"
+        time += if secs < 10 then "0" + secs else "" + secs
+        return time
 
     getStreamUrl: (url, callback) ->
         $.post "http://muzebra.com/service/user/playerparams/", {}, (data) ->

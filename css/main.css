@@ -2,6 +2,10 @@ body {
 	padding-top: 50px;
 }
 
+.hidden {
+    display: none;
+}
+
 .musicplayer {
     padding-top: 5px;
 }
@@ -14,8 +18,8 @@ body {
     float: left;
     font-size: 14px;
     font-weight: bold;
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     padding: 5px;
     text-align: center;
     position: relative;

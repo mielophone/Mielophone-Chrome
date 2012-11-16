@@ -19,21 +19,35 @@
         _this = this;
       url = "http://muzebra.com/search/?q=" + encodeURIComponent(query);
       return $.get(url, function(data) {
-        var i, name, re, res;
+        var dur, i, name, re, res;
         re = /<a class="info".+?data-link="(.+?)".+?data-duration="(.+?)">(.+?)<\/a>/gim;
         data = data.replace(/[\n\t\r]/gm, "");
         res = re.exec(data);
         _this.songs = [];
         i = 0;
         while (res !== null) {
-          name = res[3].split(" - ");
-          _this.songs[i] = new Track(name[1], name[0], res[2], res[1], _this.id);
+          if (res[1].indexOf("http") !== -1) {
+            name = res[3].split(" - ");
+            dur = _this.secondsToString(res[2]);
+            _this.songs[i] = new Track(name[1], name[0], dur, res[1], _this.id);
+          }
           res = re.exec(data);
           i++;
         }
         callback(_this.songs);
         return true;
       });
+    };
+
+    MuzebraPlugin.prototype.secondsToString = function(totalseconds) {
+      var mins, secs, time;
+      totalseconds = parseInt(totalseconds);
+      mins = Math.floor(totalseconds / 60);
+      secs = totalseconds - mins * 60;
+      time = mins < 10 ? "0" + mins : "" + mins;
+      time += ":";
+      time += secs < 10 ? "0" + secs : "" + secs;
+      return time;
     };
 
     MuzebraPlugin.prototype.getStreamUrl = function(url, callback) {
