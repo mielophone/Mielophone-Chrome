@@ -27,6 +27,15 @@ class MuzebraPlugin
             callback(@songs)
             return true
 
+    findStream: (name, duration, callback) ->
+        @query name, (songs) ->
+            for song in songs
+                if song.title == name && song.duration == duration
+                    callback(song)
+                    return true
+            return true
+        return true
+
     secondsToString: (totalseconds) ->
         totalseconds = parseInt(totalseconds)
         mins = Math.floor(totalseconds / 60)

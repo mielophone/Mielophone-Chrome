@@ -39,6 +39,21 @@
       });
     };
 
+    MuzebraPlugin.prototype.findStream = function(name, duration, callback) {
+      this.query(name, function(songs) {
+        var song, _i, _len;
+        for (_i = 0, _len = songs.length; _i < _len; _i++) {
+          song = songs[_i];
+          if (song.title === name && song.duration === duration) {
+            callback(song);
+            return true;
+          }
+        }
+        return true;
+      });
+      return true;
+    };
+
     MuzebraPlugin.prototype.secondsToString = function(totalseconds) {
       var mins, secs, time;
       totalseconds = parseInt(totalseconds);

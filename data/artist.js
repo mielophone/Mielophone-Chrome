@@ -8,6 +8,7 @@
       this.id = id;
       this.name = name;
       this.image = image;
+      this.type = "artist";
       return true;
     }
 

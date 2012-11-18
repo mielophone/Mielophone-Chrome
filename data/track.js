@@ -6,7 +6,10 @@
 
     function Track(title, artist, duration, url, pluginId) {
       this.duration = duration;
-      this.url = url;
+      this.url = url != null ? url : null;
+      if (pluginId == null) {
+        pluginId = "noplugin";
+      }
       this.title = this.htmlDecode(title);
       this.artist = this.htmlDecode(artist);
       this.id = this.title + this.artist + pluginId;

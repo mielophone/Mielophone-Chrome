@@ -1,5 +1,5 @@
 class Album
-    constructor: (@id, @title, @image, @year, @country = "", @styles = [], @genres = []) ->
+    constructor: (@id, @title, @image, @year, @type, @country = "", @styles = [], @genres = []) ->
         return true
 
 window.Album = Album

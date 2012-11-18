@@ -24,6 +24,15 @@ class OlolofmPlugin
             callback(@songs)
             return true
 
+    findStream: (name, duration, callback) ->
+        @query name, (songs) ->
+            for song in songs
+                if song.title == name && song.duration == duration
+                    callback(song)
+                    return true
+            return true
+        return true
+
     getStreamUrl: (url, callback) ->
         $.get url, (data) ->
             re = /<a href="(.+?)".+?>Сохранить в нормальном формате MP3<\/a>/gim

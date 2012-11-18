@@ -4,11 +4,12 @@
 
   Album = (function() {
 
-    function Album(id, title, image, year, country, styles, genres) {
+    function Album(id, title, image, year, type, country, styles, genres) {
       this.id = id;
       this.title = title;
       this.image = image;
       this.year = year;
+      this.type = type;
       this.country = country != null ? country : "";
       this.styles = styles != null ? styles : [];
       this.genres = genres != null ? genres : [];

@@ -37,3 +37,27 @@ body {
     width: 90px;
     height: 90px;
 }
+
+.album {
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    text-align: center;
+    position: relative;
+}
+
+.album p {
+    float: left;
+    display: block;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+}
+
+.album img {
+    width: 90px;
+    height: 90px;
+}

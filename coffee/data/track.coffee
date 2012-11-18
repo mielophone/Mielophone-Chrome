@@ -1,5 +1,5 @@
 class Track
-    constructor: (title, artist, @duration, @url, pluginId) ->
+    constructor: (title, artist, @duration, @url = null, pluginId = "noplugin") ->
         @title = @htmlDecode(title)
         @artist = @htmlDecode(artist)
         @id = @title+@artist+pluginId
